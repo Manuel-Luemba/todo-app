@@ -1,11 +1,15 @@
 import './App.css';
 
-function App() {
+function setname (name){
+  return name
+}
+
+function App(props) {
   return (
     <div className="App">
       <header className="App-header">
         <p>
-       <code>src/App.js</code>
+       <code>{props.name}</code>
         </p>
       </header>
     </div>
