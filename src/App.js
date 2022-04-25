@@ -1,17 +1,44 @@
 import './App.css';
+import Todo from "./components/Todo";
+import Form from "./components/Form";
+import FilterButton from "./components/FilterButton";
 
-function setname (name){
-  return name
+
+
+
+function addTask(name) {
+  alert(name);
 }
 
 function App(props) {
+
+  const task_list = props.tasks?.map(task =>
+    <Todo id={task.id} name={task.name} completed={task.completed} key={task.id} />
+  );
+
+  
+  console.log(task_list);
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-       <code>{props.name}</code>
-        </p>
-      </header>
+    <div className="TodoApp">
+      <h1>Todo Matoso</h1>
+      <Form addTask={addTask}/>
+      <div className="filters btn-group stack-exception">
+      <FilterButton name="All"/>
+      <FilterButton name="Active"/>
+      <FilterButton name="Completed"/>
+
+      </div>
+      <h2 id="list-heading">
+        3 tasks remaining
+      </h2>
+      <ul
+        role="list"
+        className="todo-list stack-large stack-exception"
+        aria-labelledby="list-heading"
+      >
+        {task_list}
+
+      </ul>
     </div>
   );
 }
